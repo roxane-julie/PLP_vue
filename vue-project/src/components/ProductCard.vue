@@ -1,19 +1,31 @@
 <template>
         <div class="product-card" >
-        <img :src="props.imgage" alt="">
-        <h3>title</h3>
-        <p>paragraphe</p>
+        <img :src="props.img" alt="">
+        <h3><slot name="title"></slot></h3>
+        <p><slot name="price"></slot></p>
     </div>
 </template>
 
-<script>
+<script setup>
 import { defineProps } from "vue";
 
 const props = defineProps({
-    img: String
+    img:String
 })
 
 </script>
 
-<style>
+<style scoped>
+.product-card {
+    
+    max-width: 200px;
+    border: 1px solid red;
+    }
+.product-card img {
+    width: 100%;
+}
+.product-card h3 {
+    margin: 10px 0px;
+}
+
 </style>
