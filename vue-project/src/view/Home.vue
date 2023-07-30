@@ -1,9 +1,15 @@
 <template>
-    <div class="home" v-if="products.length > 0">
-        <ProductCard v-for="(product, index) in products" :img="product.image" :key="index">
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
+
+    <div class="home">
+        <router-link v-for="(product, index) in products" :key="index" :to="`/product/${product.id}`">        
+            <ProductCard  :img="product.image" >
             <template #title>{{ product.title }}</template>
             <template #price>{{ product.price }} €</template>
         </ProductCard>
+    </router-link>
+
     </div>   
    
     
@@ -12,19 +18,19 @@
 <script setup>
 
 import ProductCard from "../components/ProductCard.vue"
-import { onMounted, ref } from 'vue';
+import { ref,onMounted } from 'vue';
 
 const products = ref([])
 
-fetch('https://fakestoreapi.com/products')
+onMounted(()=>{
+
+    fetch('https://fakestoreapi.com/products')
     .then((response)=>response.json())
     .then((data)=> {
         products.value = data;
         console.log(data)
         console.log(products.value)
     })
-
-onMounted(()=>{
 })
 
 </script>
@@ -35,6 +41,7 @@ onMounted(()=>{
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 </style>

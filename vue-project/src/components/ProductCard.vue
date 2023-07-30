@@ -18,8 +18,11 @@ const props = defineProps({
 <style scoped>
 .product-card {
     
-    max-width: 200px;
+    width: 200px;
     border: 1px solid red;
+    flex-wrap: wrap;
+    margin: 10px;
+
     }
 .product-card img {
     width: 100%;
